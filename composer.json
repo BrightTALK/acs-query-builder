@@ -1,0 +1,33 @@
+{
+    "name": "brighttalk/acs-query-builder",
+    "homepage": "http://www.brighttalk.com",
+    "authors": [
+        {
+            "name": "BrightTALK",
+            "homepage": "http://www.brighttalk.com"
+        },
+        {
+            "name": "Ricardo Oliveira",
+            "email": "roliveira@brighttalk.com"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.3"
+    },
+
+    "require-dev": {
+        "mockery/mockery": "0.8.*",
+        "phpunit/phpunit": "3.7.*"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "BrightTALK\\lib\\ACSQueryBuilder": "src/"
+        }
+    },
+
+    "config": {
+        "bin-dir": "bin"
+    }
+}
