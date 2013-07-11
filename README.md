@@ -1,5 +1,7 @@
 # Amazon Cloud Search Query Builder
 
+[![Build Status](https://travis-ci.org/billybigpotatoes/acs-query-builder.png)](https://travis-ci.org/billybigpotatoes/acs-query-builder)
+
 ## Description
 
 This library provides an object oriented way to programmatically build queries for the Amazon Cloud Search service. It's inspired by doctrine's query builder.
