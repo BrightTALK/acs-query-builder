@@ -1,6 +1,6 @@
 # Amazon Cloud Search Query Builder
 
-[![Build Status](https://travis-ci.org/billybigpotatoes/acs-query-builder.png)](https://travis-ci.org/billybigpotatoes/acs-query-builder)
+[![Build Status](https://travis-ci.org/BrightTALK/acs-query-builder.png)](https://travis-ci.org/BrightTALK/acs-query-builder)
 
 ## Description
 
