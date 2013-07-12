@@ -7,6 +7,15 @@
 This library provides an object oriented way to programmatically build queries for the Amazon Cloud Search service. It's inspired by doctrine's query builder.
 A query's __toString method will return a url encoded string, as provided by the http_build_query function
 
+##Installation
+
+Add to your composer.json:
+
+    "require": {
+        ...
+        "brighttalk/acs-query-builder": "dev-master"
+    }
+
 ## Working with the Query Builder
 
 ```php
