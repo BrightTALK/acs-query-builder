@@ -1,6 +1,7 @@
 {
     "name": "brighttalk/acs-query-builder",
     "homepage": "http://www.brighttalk.com",
+    "license": "BSD-2-Clause",
     "authors": [
         {
             "name": "BrightTALK",
