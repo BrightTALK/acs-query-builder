@@ -4,7 +4,7 @@
 
 ## Description
 
-This library provides an object oriented way to programmatically build queries for the Amazon Cloud Search service. It's inspired by doctrine's query builder.
+This library provides an object oriented way to programmatically build queries for the Amazon Cloud Search service. It's inspired by Doctrine's query builder.
 A query's __toString method will return a url encoded string, as provided by the http_build_query function
 
 ##Installation
