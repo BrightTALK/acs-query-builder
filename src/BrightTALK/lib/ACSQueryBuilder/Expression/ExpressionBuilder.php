@@ -4,6 +4,7 @@ namespace BrightTALK\lib\ACSQueryBuilder\Expression;
 
 use BrightTALK\lib\ACSQueryBuilder\Expression\Factory\CompositesFactory;
 use BrightTALK\lib\ACSQueryBuilder\Expression\Factory\ComparisonFactory;
+use BrightTALK\lib\ACSQueryBuilder\Expression\Factory\LiteralFactory;
 
 class ExpressionBuilder
 {
@@ -18,13 +19,20 @@ class ExpressionBuilder
     private $comparisonFactory;
 
     /**
+     * @var \BrightTALK\lib\ACSQueryBuilder\Expression\Factory\LiteralFactory
+     */
+    private $literalFactory;
+
+    /**
      * @param \BrightTALK\lib\ACSQueryBuilder\Expression\Factory\CompositesFactory $compositesFactory
      * @param \BrightTALK\lib\ACSQueryBuilder\Expression\Factory\ComparisonFactory $comparisonFactory
+     * @param \BrightTALK\lib\ACSQueryBuilder\Expression\Factory\LiteralFactory    $literalFactory
      */
-    public function __construct(CompositesFactory $compositesFactory, ComparisonFactory $comparisonFactory)
+    public function __construct(CompositesFactory $compositesFactory, ComparisonFactory $comparisonFactory, LiteralFactory $literalFactory)
     {
         $this->compositesFactory = $compositesFactory;
         $this->comparisonFactory = $comparisonFactory;
+        $this->literalFactory = $literalFactory;
     }
 
     /**
@@ -57,5 +65,15 @@ class ExpressionBuilder
     public function eq($x, $y)
     {
         return $this->comparisonFactory->buildComparison($x, Comparison::EQ, $y);
+    }
+
+    /**
+     * @param string $term
+     *
+     * @return \BrightTALK\lib\ACSQueryBuilder\Expression\ExpressionInterface
+     */
+    public function literal($term)
+    {
+        return $this->literalFactory->buildLiteral($term);
     }
 }
