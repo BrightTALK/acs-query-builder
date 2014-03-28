@@ -74,6 +74,12 @@ class QueryBuilderTest extends \PHPUnit_Framework_TestCase
         $this->queryBuilder->setPagination($pageNumber, $pageSize);
     }
 
+    public function test_addFacet_calls_addFacet_method_from_query_with_correct_parameters()
+    {
+        $this->query->shouldReceive('addFacet')->once()->with('keyword');
+        $this->queryBuilder->addFacet('keyword');
+    }
+
     public function getPaginationTestCases()
     {
         //$pageNumber, $pageSize, $expectedStart, $expectedSize

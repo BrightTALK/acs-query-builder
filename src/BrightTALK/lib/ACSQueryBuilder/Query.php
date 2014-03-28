@@ -24,6 +24,12 @@ class Query
      */
     private $rank;
 
+
+    /**
+     * @var null|array
+     */
+    private $facets;
+
     /**
      * @return string
      */
@@ -104,12 +110,28 @@ class Query
         return $this;
     }
 
+    public function addFacet($facet)
+    {
+        if (null === $this->facets) {
+            $this->facets = array();
+        }
+
+        if (!in_array($facet, $this->facets)) {
+            $this->facets []= $facet;
+        }
+
+        return $this;
+    }
+
     /**
      * @return string
      */
     public function __toString()
     {
-        return http_build_query($this->asArray());
+        $asArray = $this->asArray();
+        $asArray['facet'] = is_array($this->facets)? implode(',', $asArray['facet']): $asArray['facet'];
+
+        return urldecode(http_build_query($asArray));
     }
 
     /**
@@ -118,10 +140,11 @@ class Query
     public function asArray()
     {
         return array(
-            'bq' => $this->bq,
+            'bq'    => $this->bq,
             'start' => $this->start,
-            'size' => $this->size,
-            'rank' => $this->rank
+            'size'  => $this->size,
+            'rank'  => $this->rank,
+            'facet' => $this->facets
         );
     }
 }

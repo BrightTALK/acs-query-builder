@@ -129,4 +129,15 @@ class QueryBuilder
 
         return $this;
     }
+
+    /**
+     * @param $facet
+     * @return $this
+     */
+    public function addFacet($facet)
+    {
+        $this->query->addFacet($facet);
+
+        return $this;
+    }
 }
