@@ -129,7 +129,6 @@ class Query
     public function __toString()
     {
         $asArray = $this->asArray();
-        $asArray['facet'] = is_array($this->facets)? implode(',', $asArray['facet']): $asArray['facet'];
 
         return urldecode(http_build_query($asArray));
     }
@@ -144,7 +143,7 @@ class Query
             'start' => $this->start,
             'size'  => $this->size,
             'rank'  => $this->rank,
-            'facet' => $this->facets
+            'facet' => implode(',', $this->facets)
         );
     }
 }
