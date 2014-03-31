@@ -36,32 +36,32 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     public function testAsArray()
     {
         $query = new Query();
-        $expectedArray = array('bq' => 'test', 'start' => null, 'size' => null, 'rank' => null, 'facet' => array());
+        $expectedArray = array('bq' => 'test', 'start' => null, 'size' => null, 'rank' => null);
         $query->setBq('test');
         $this->assertSame($expectedArray, $query->asArray());
 
         $query = new Query();
-        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => null, 'rank' => null, 'facet' => array());
+        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => null, 'rank' => null);
         $query->setBq('test')->setStart(0);
         $this->assertSame($expectedArray, $query->asArray());
 
         $query = new Query();
-        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => null, 'facet' => array());
+        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => null);
         $query->setBq('test')->setStart(0)->setSize(1);
         $this->assertSame($expectedArray, $query->asArray());
 
         $query = new Query();
-        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => 'test-rank', 'facet' => array());
+        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => 'test-rank');
         $query->setBq('test')->setStart(0)->setSize(1)->setRank('test-rank');
         $this->assertSame($expectedArray, $query->asArray());
 
         $query = new Query();
-        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => 'test-rank', 'facet' => array('keyword'));
+        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => 'test-rank', 'facet' => 'keyword');
         $query->setBq('test')->setStart(0)->setSize(1)->setRank('test-rank')->addFacet('keyword');
         $this->assertSame($expectedArray, $query->asArray());
 
         $query = new Query();
-        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => 'test-rank', 'facet' => array('keyword', 'genre'));
+        $expectedArray = array('bq' => 'test', 'start' => 0, 'size' => 1, 'rank' => 'test-rank', 'facet' => 'keyword,genre');
         $query->setBq('test')->setStart(0)->setSize(1)->setRank('test-rank')->addFacet('keyword')->addFacet('genre');
         $this->assertSame($expectedArray, $query->asArray());
     }
@@ -82,7 +82,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             array(null),
             array(2),
             array(new \stdClass()),
-            array(array()),
+            array(array())
         );
     }
 }
