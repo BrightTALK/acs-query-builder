@@ -26,9 +26,9 @@ class Query
 
 
     /**
-     * @var null|array
+     * @var array
      */
-    private $facets;
+    private $facets = array();
 
     /**
      * @return string
@@ -112,8 +112,8 @@ class Query
 
     public function addFacet($facet)
     {
-        if (null === $this->facets) {
-            $this->facets = array();
+        if(!is_string($facet)) {
+            throw new \InvalidArgumentException('Facet names must be strings');
         }
 
         if (!in_array($facet, $this->facets)) {
@@ -129,7 +129,12 @@ class Query
     public function __toString()
     {
         $asArray = $this->asArray();
-        $asArray['facet'] = is_array($this->facets)? implode(',', $asArray['facet']): $asArray['facet'];
+
+        if (empty($asArray['facet'])) {
+            unset($asArray['facet']);
+        } else {
+            $asArray['facet'] = implode(',', $asArray['facet']);
+        }
 
         return urldecode(http_build_query($asArray));
     }
