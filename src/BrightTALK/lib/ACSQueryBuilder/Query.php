@@ -130,12 +130,6 @@ class Query
     {
         $asArray = $this->asArray();
 
-        if (empty($asArray['facet'])) {
-            unset($asArray['facet']);
-        } else {
-            $asArray['facet'] = implode(',', $asArray['facet']);
-        }
-
         return urldecode(http_build_query($asArray));
     }
 
@@ -144,12 +138,18 @@ class Query
      */
     public function asArray()
     {
-        return array(
+        $asArray = array(
             'bq'    => $this->bq,
             'start' => $this->start,
             'size'  => $this->size,
             'rank'  => $this->rank,
-            'facet' => $this->facets
+            'facet' => implode(',', $this->facets)
         );
+
+        if (empty($asArray['facet'])) {
+            unset($asArray['facet']);
+        }
+
+        return $asArray;
     }
 }
