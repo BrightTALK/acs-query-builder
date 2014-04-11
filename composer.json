@@ -1,5 +1,6 @@
 {
     "name": "brighttalk/acs-query-builder",
+    "description": "Provides an object oriented way to programmatically build queries for the Amazon Cloud Search service",
     "homepage": "http://www.brighttalk.com",
     "license": "BSD-2-Clause",
     "authors": [
