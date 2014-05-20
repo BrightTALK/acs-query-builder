@@ -1,0 +1,15 @@
+filter:
+  paths:
+    - src/*
+
+before_commands:
+  - git clone https://github.com/opensky/Symfony2-coding-standard.git ../Symfony2-coding-standard/
+
+tools:
+  php_code_sniffer:
+    config:
+      ruleset: ../Symfony2-coding-standard/ruleset.xml
+      standard: custom
+
+  external_code_coverage:
+    timeout: 300
