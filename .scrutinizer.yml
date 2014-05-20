@@ -8,8 +8,7 @@ before_commands:
 tools:
   php_code_sniffer:
     config:
-      ruleset: ../Symfony2-coding-standard/ruleset.xml
-      standard: custom
+      standard: ../Symfony2-coding-standard
 
   external_code_coverage:
     timeout: 300
