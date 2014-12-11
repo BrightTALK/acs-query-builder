@@ -1,8 +1,5 @@
 <?php
-
 namespace BrightTALK\lib\ACSQueryBuilder\Expression;
-
-use BrightTALK\lib\ACSQueryBuilder\Expression\ExpressionInterface;
 
 class Notx extends Composite
 {
@@ -12,11 +9,21 @@ class Notx extends Composite
     protected $preSeparator = '(not ';
 
     /**
-     * @param \BrightTALK\lib\ACSQueryBuilder\Expression\ExpressionInterface $part
+     * @param ExpressionInterface|array $part
      */
-    public function __construct(ExpressionInterface $part)
+    public function __construct($part)
     {
-        parent::__construct(array($part));
+        $parentArgs = array();
+
+        if($part instanceof ExpressionInterface)
+        {
+            $parentArgs[] = $part;
+        }elseif(is_array($part))
+        {
+            $parentArgs = $part;
+        }
+
+        parent::__construct($parentArgs);
     }
 }
 
