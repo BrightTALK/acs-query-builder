@@ -2,7 +2,6 @@
 namespace BrightTALK\lib\ACSQueryBuilder\Tests\Expression\Factory;
 
 use BrightTALK\lib\ACSQueryBuilder\Expression\Factory\CompositesFactory;
-use Mockery as m;
 
 class CompositesFactoryTest extends \PHPUnit_Framework_TestCase
 {
