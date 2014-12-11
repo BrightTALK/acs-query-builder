@@ -64,6 +64,19 @@ abstract class Composite implements ExpressionInterface
     }
 
     /**
+     * Addend a new part to an existing expression
+     *
+     * @param ExpressionInterface $part
+     * @return Composite
+     */
+    public function appendPart(ExpressionInterface $part)
+    {
+        $this->parts[] = $part;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
