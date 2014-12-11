@@ -1,5 +1,6 @@
 {
     "name": "brighttalk/acs-query-builder",
+    "description": "Provides an object oriented way to programmatically build queries for the Amazon Cloud Search service",
     "homepage": "http://www.brighttalk.com",
     "license": "BSD-2-Clause",
     "authors": [
@@ -10,6 +11,10 @@
         {
             "name": "Ricardo Oliveira",
             "email": "roliveira@brighttalk.com"
+        },
+        {
+            "name": "Andrew Tarry",
+            "email": "atarry@brighttalk.com"
         }
     ],
 
@@ -18,8 +23,8 @@
     },
 
     "require-dev": {
-        "mockery/mockery": "0.8.*",
-        "phpunit/phpunit": "3.7.*"
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "4.4.*"
     },
 
     "autoload": {

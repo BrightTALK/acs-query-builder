@@ -2,7 +2,7 @@
 
 namespace BrightTALK\lib\ACSQueryBuilder\Expression;
 
-class Orxx extends Composite
+class Orx extends Composite
 {
     /**
      * @var string

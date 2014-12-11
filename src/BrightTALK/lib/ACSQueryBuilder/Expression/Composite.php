@@ -1,8 +1,5 @@
 <?php
-
 namespace BrightTALK\lib\ACSQueryBuilder\Expression;
-
-use BrightTALK\lib\ACSQueryBuilder\Expression\ExpressionInterface;
 
 abstract class Composite implements ExpressionInterface
 {
