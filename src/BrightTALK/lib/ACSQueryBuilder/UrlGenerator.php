@@ -19,11 +19,18 @@ class UrlGenerator
     private $baseUrl;
 
     /**
-     * @param string $url
+     * @var string
      */
-    public function __construct($url)
+    private $scheme;
+
+    /**
+     * @param string $url
+     * @param string $scheme
+     */
+    public function __construct($url, $scheme = 'https')
     {
         $this->setBaseUrl($url);
+        $this->scheme = $scheme;
     }
 
     /**
@@ -34,7 +41,7 @@ class UrlGenerator
      */
     public function getUrl(Query $query)
     {
-        return sprintf("https://%s/search?%s", $this->baseUrl, $query->encode());
+        return sprintf("%s://%s/search?%s", $this->scheme, $this->baseUrl, $query->encode());
     }
 
     /**
@@ -52,6 +59,14 @@ class UrlGenerator
 
         if ($this->endsWith($url, '/')) {
             $url = $this->removeFromEnd($url, '/');
+        }
+
+        if($this->startsWith($url, 'https://')) {
+            $url = $this->removeFromStart($url, 'https://');
+        }
+
+        if($this->startsWith($url, 'http://')) {
+            $url = $this->removeFromStart($url, 'http://');
         }
 
         $this->baseUrl = $url;
@@ -72,6 +87,20 @@ class UrlGenerator
     }
 
     /**
+     * Test if the string ends with a value
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    private function startsWith($haystack, $needle)
+    {
+        $needleLength = mb_strlen($needle);
+
+        return mb_substr($haystack, 0, $needleLength) === $needle;
+    }
+
+    /**
      * Remove a string from the end of another string
      *
      * @param string $haystack
@@ -83,5 +112,19 @@ class UrlGenerator
         $remainingLength = mb_strlen($haystack) - mb_strlen($needle);
 
         return mb_substr($haystack, 0, $remainingLength);
+    }
+
+    /**
+     * Remove a string from the end of another string
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @return string
+     */
+    private function removeFromStart($haystack, $needle)
+    {
+        $length = mb_strlen($needle) - 1;
+
+        return mb_substr($haystack, $length);
     }
 }

@@ -16,18 +16,28 @@ class UrlGeneratorTest extends \PHPUnit_Framework_TestCase {
 
         $urlGenerator = new UrlGenerator($baseUrl);
 
-        $this->assertContains('search?q=hello', $urlGenerator->getUrl($query));
+        $url = $urlGenerator->getUrl($query);
+
+        $this->assertContains('search?q=hello', $url);
+        $this->assertContains('https', $url);
+
+        m::close();
     }
 
     public function urlProvider()
     {
         $base = 'search.aws.com/';
+        $fullBase = 'https://' . $base;
 
         return array(
             array($base),
             array($base . 'search'),
             array($base . 'search?'),
-            array($base . '/search?')
+            array($base . '/search?'),
+            array($fullBase),
+            array($fullBase . 'search'),
+            array($fullBase . 'search?'),
+            array($fullBase . '/search?')
         );
     }
 
