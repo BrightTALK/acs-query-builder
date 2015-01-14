@@ -1,5 +1,4 @@
 <?php
-
 namespace BrightTALK\lib\ACSQueryBuilder;
 
 use BrightTALK\lib\ACSQueryBuilder\Expression\ExpressionBuilder;
@@ -19,13 +18,20 @@ class QueryBuilder
     private $expressionBuilder;
 
     /**
-     * @param \BrightTALK\lib\ACSQueryBuilder\Expression\ExpressionBuilder $expressionBuilder
-     * @param \BrightTALK\lib\ACSQueryBuilder\Query                        $query
+     * @var UrlGenerator
      */
-    public function __construct(ExpressionBuilder $expressionBuilder, Query $query)
+    private $urlGenerator;
+
+    /**
+     * @param ExpressionBuilder $expressionBuilder
+     * @param Query             $query
+     * @param UrlGenerator      $urlGenerator
+     */
+    public function __construct(ExpressionBuilder $expressionBuilder, Query $query, UrlGenerator $urlGenerator = null)
     {
         $this->expressionBuilder = $expressionBuilder;
         $this->query = $query;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -114,8 +120,8 @@ class QueryBuilder
      */
     public function setPagination($pageNumber, $pageSize)
     {
-        $pageNumber = (int) $pageNumber;
-        $pageSize = (int) $pageSize;
+        $pageNumber = (int)$pageNumber;
+        $pageSize = (int)$pageSize;
         if ($pageNumber < 1) {
             throw new \InvalidArgumentException('A page number must be greater than 0');
         }
@@ -124,7 +130,7 @@ class QueryBuilder
             throw new \InvalidArgumentException('A page size must be equal or greater to 0');
         }
 
-        $this->query->setStart(($pageNumber-1)*$pageSize);
+        $this->query->setStart(($pageNumber - 1) * $pageSize);
         $this->query->setSize($pageSize);
 
         return $this;
@@ -139,5 +145,15 @@ class QueryBuilder
         $this->query->addFacet($facet);
 
         return $this;
+    }
+
+    /**
+     * Get the complete aws url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->urlGenerator->getUrl($this->getQuery());
     }
 }

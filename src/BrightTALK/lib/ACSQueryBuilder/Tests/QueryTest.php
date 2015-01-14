@@ -85,4 +85,18 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             array(array())
         );
     }
+
+    public function testAsEncode()
+    {
+        $queryString = "(and type:'type' rating:1..10 (or user:'steve'))";
+
+        $query = new Query();
+        $query->setBq($queryString);
+        $query->setSize(5);
+
+        $encoded = $query->encode();
+
+        $this->assertContains("&size=5", $encoded);
+        $this->assertContains('bq=' . urlencode($queryString), $encoded);
+    }
 }

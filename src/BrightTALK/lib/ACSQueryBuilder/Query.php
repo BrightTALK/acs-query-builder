@@ -24,7 +24,6 @@ class Query
      */
     private $rank;
 
-
     /**
      * @var array
      */
@@ -131,6 +130,18 @@ class Query
         $asArray = $this->asArray();
 
         return urldecode(http_build_query($asArray));
+    }
+
+    /**
+     * Build the query
+     *
+     * @return string
+     */
+    public function encode()
+    {
+        $asArray = $this->asArray();
+
+        return http_build_query($asArray);
     }
 
     /**
