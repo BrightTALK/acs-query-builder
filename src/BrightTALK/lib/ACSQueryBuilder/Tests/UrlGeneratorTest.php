@@ -19,7 +19,7 @@ class UrlGeneratorTest extends \PHPUnit_Framework_TestCase {
         $url = $urlGenerator->getUrl($query);
 
         $this->assertContains('search?q=hello', $url);
-        $this->assertContains('https', $url);
+        $this->assertContains('https://search', $url);
 
         m::close();
     }

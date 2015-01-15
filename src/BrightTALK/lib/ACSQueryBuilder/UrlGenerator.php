@@ -123,7 +123,7 @@ class UrlGenerator
      */
     private function removeFromStart($haystack, $needle)
     {
-        $length = mb_strlen($needle) - 1;
+        $length = mb_strlen($needle);
 
         return mb_substr($haystack, $length);
     }
